@@ -4,9 +4,7 @@ Creating an NFT Auction
 
 # Team Members
 
-Alex Mowlem
-Abib Ajibola
-Mitch Rose
+Alex Mowlem, Abib Ajibola, Mitch Rose
 
 # Project Description / Outline
 
