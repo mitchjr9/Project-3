@@ -4,9 +4,9 @@ Creating an Auction Marketplace for Movie Poster NFT
 
 # Team Members
 
-Alex Mowlem, Abib Ajibola, Mitch Rose
+Abib Ajibola, Alex Mowlem, Mitch Rose
 
-# Project Description / Outline
+# Project Description
 
 Create a smart contract auction and an NFT of Abib's movie poster to auction off in example transaction
 
@@ -17,7 +17,7 @@ Create a smart contract auction and an NFT of Abib's movie poster to auction off
 3. Conduct example transaction of NFT between 2 wallets
 4. Create front-end web application with Streamlit
 
-# Task Breakdown (Due Dates; End of Class)
+# Timeline
 
 ## May 21, 2022
 
