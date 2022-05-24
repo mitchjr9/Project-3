@@ -11,5 +11,3 @@ Mitch Rose
 Create an auction marketplace for NFTs with smart contracts
 
 ## Project Files
-
-## Graphs
