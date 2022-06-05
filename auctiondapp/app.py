@@ -47,20 +47,23 @@ contract = load_contract()
 
 accounts = w3.eth.accounts
 account = accounts[0]
-student_account = st.selectbox("Select Account", options=accounts)
-auction_details = st.text_input("Auction Details", value="Punch 9 for Harold Washington")
-if st.button("Auction Sauce"):
-    contract.functions.awardCertificate(student_account, certificate_details).transact({'from': account, 'gas': 1000000})
+wallet_account = st.selectbox("Select Account", options=accounts)
+make_bid = st.number_input("Make a Bid", value=0, step=1)
+if st.button("Make Bid"):
+    contract.functions.bid(wallet_account, make_bid).transact({'from': account, 'gas': 1000000})
 
 ################################################################################
 # Display Certificate
 ################################################################################
-auction_id = st.number_input("Enter a Certificate Token ID to display", value=0, step=1)
-if st.button("Display Auction Winner"):
+if st.button("Display Auction Info"):
     # Get the certificate owner
-    certificate_owner = contract.functions.ownerOf(certificate_id).call()
-    st.write(f"The certificate was awarded to {certificate_owner}")
+    end_time = contract.functions.auctionEndTime().call()
+    st.write(f"The auction ends in {end_time}")
 
     # Get the certificate's metadata
-    certificate_uri = contract.functions.tokenURI(certificate_id).call()
-    st.write(f"The certificate's tokenURI metadata is {certificate_uri}")
+    high_bid = contract.functions.highestbid().call()
+    st.write(f"The highest bid is {high_bid}")
+    
+    # Highest bidder
+    high_bidder = contract.functions.highestBidder().call()
+    st.write(f"The highest bidder is {high_bidder}")
