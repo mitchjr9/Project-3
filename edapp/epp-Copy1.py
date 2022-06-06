@@ -22,8 +22,8 @@ w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
 def load_contract():
 
     # Load ABI
-    with open(Path('contracts/compiled/compiled.json')) as f:
-        auction_abi = json.load(f)
+    with open(Path('compiled/compiled.json')) as f:
+        exchange_abi = json.load(f)
 
     # Set the contract address (this is the address of the deployed contract)
     contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
@@ -31,7 +31,7 @@ def load_contract():
     # Get the contract
     contract = w3.eth.contract(
         address=contract_address,
-        abi=auction_abi
+        abi=exchange_abi
     )
     # Return the contract from the function
     return contract
@@ -42,28 +42,28 @@ contract = load_contract()
 
 
 ################################################################################
-# Make Bid
+# Award Certificate
 ################################################################################
 
 accounts = w3.eth.accounts
 account = accounts[0]
 wallet_account = st.selectbox("Select Account", options=accounts)
-make_bid = st.number_input("Make a Bid", value=1, step=1)
-if st.button("Make Bid"):
-    contract.functions.bid().transact({'from': wallet_account, 'gas': 3000000})
+enter_amt = st.number_input("Enter Amount to Send", value=0, step=1)
+if st.button("Send Eth"):
+    contract.functions.sendMoney(wallet_account, enter_amt).transact({'from': account, 'gas': 1000000})
 
 ################################################################################
-# Display Info
+# Withdraw from smart contract
 ################################################################################
-if st.button("Display Auction Info"):
-    # Get the certificate owner
-    end_time = contract.functions.auctionEndTime().call()
-    st.write(f"The auction ends in {end_time}")
-
-    # Get the certificate's metadata
-    high_bid = contract.functions.highestbid().call()
-    st.write(f"The highest bid is {high_bid}")
+if st.button("Withdraw from smart contract"):
+    # Get the wallet balance
+    withdraw_eth = contract.functions.withdrawAllMoney().call()
+    st.write(f"The wallet balance is {end_time}")
     
-    # Highest bidder
-    high_bidder = contract.functions.highestBidder().call()
-    st.write(f"The highest bidder is {high_bidder}")
+################################################################################
+# Get Balance
+################################################################################
+if st.button("Display Balance"):
+    # Get the wallet balance
+    wallet_balance = contract.functions.getBalance().call()
+    st.write(f"The wallet balance is {end_time}")

@@ -22,7 +22,7 @@ w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
 def load_contract():
 
     # Load ABI
-    with open(Path('contracts/compiled/compiled.json')) as f:
+    with open(Path('compiled/compiled.json')) as f:
         auction_abi = json.load(f)
 
     # Set the contract address (this is the address of the deployed contract)
@@ -42,18 +42,18 @@ contract = load_contract()
 
 
 ################################################################################
-# Make Bid
+# Award Certificate
 ################################################################################
 
 accounts = w3.eth.accounts
 account = accounts[0]
 wallet_account = st.selectbox("Select Account", options=accounts)
-make_bid = st.number_input("Make a Bid", value=1, step=1)
+make_bid = st.number_input("Make a Bid", value=0, step=1)
 if st.button("Make Bid"):
-    contract.functions.bid().transact({'from': wallet_account, 'gas': 3000000})
+    contract.functions.bid(wallet_account, make_bid).transact({'from': account, 'gas': 1000000})
 
 ################################################################################
-# Display Info
+# Display Certificate
 ################################################################################
 if st.button("Display Auction Info"):
     # Get the certificate owner

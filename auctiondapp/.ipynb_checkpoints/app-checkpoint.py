@@ -42,18 +42,18 @@ contract = load_contract()
 
 
 ################################################################################
-# Award Certificate
+# Make Bid
 ################################################################################
 
 accounts = w3.eth.accounts
 account = accounts[0]
 wallet_account = st.selectbox("Select Account", options=accounts)
-make_bid = st.number_input("Make a Bid", value=0, step=1)
+make_bid = st.number_input("Make a Bid", value=1, step=1)
 if st.button("Make Bid"):
-    contract.functions.bid(wallet_account, make_bid).transact({'from': account, 'gas': 1000000})
+    contract.functions.bid().transact({'from': wallet_account, 'gas': 3000000})
 
 ################################################################################
-# Display Certificate
+# Display Info
 ################################################################################
 if st.button("Display Auction Info"):
     # Get the certificate owner
