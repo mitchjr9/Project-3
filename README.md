@@ -27,8 +27,9 @@ The auction contract enables bids to be made in Eth that are held by the contrac
 The exchange contract enables Eth to be sent to the contract. Eth can then be withdrawn from that contract, effectively enabling Eth to be sent from one wallet to another.
 
 ## Project Files
-1. Auctiondapp folder - contains auction frontend and supporting materials
-1. Contracts folder- contains all smart contracts used in the project
+1. Auctiondapp folder - contains auction frontend and supporting materials including contracts, .env file, .json file
+1. Exchangedapp folder – contains exchange smart contract (and incomplete frontend)
+1. Contracts folder- contains smart contracts used in the project
 1. Images folder - contains _Punch 9_ movie poster
 1. Wallet folder - contains wallet functionality
 1. PROPOSAL.md - contains proposal and schedule for project

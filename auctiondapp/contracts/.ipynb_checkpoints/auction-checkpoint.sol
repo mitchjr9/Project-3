@@ -5,7 +5,7 @@ contract Auction{
     address payable public beneficiary;
     uint public auctionEndTime;
     
-    // current state of the auction 
+    // current state of auction 
     address public highestBidder;
     uint public highestbid; 
     bool ended;
@@ -14,11 +14,12 @@ contract Auction{
     
     event highestBidIncreased(address bidder, uint amount);
     event auctionEnded(address winner, uint amount);
-    
+    //constructor
     constructor(uint _biddingTime, address payable _beneficiary) {
         beneficiary = _beneficiary;
         auctionEndTime = block.timestamp + _biddingTime; 
     }
+    //bid function
     function bid(uint current_bid, address wallet_address) public payable {
         require(block.timestamp < auctionEndTime,"The auction is over");
         require(wallet_address != highestBidder,"You are already the highest bidder");
@@ -39,6 +40,7 @@ contract Auction{
             revert('sorry, the bid is not high enough!');
         }
      }
+     //withdraw funds function
      function withdraw() public payable returns(bool) {
         require(ended,"You Cannot Withdraw Until The Auction Has Ended");
         uint amount = pendingReturns[msg.sender];
@@ -51,6 +53,7 @@ contract Auction{
         }
         return true;
     }
+    //end auction function
     function auctionEnd() public {
         require(block.timestamp > auctionEndTime,"The Auction Cannot End Before The Specified Time");
         if(ended) revert("the auction is already over!");
