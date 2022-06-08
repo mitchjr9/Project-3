@@ -2,25 +2,25 @@
 
 ## Team Members
 
-Abib Ajibola
-Alex Mowlem
-Mitch Rose
+Abib Ajibola, Alex Mowlem, and Mitch Rose
 
 ## Project Description / Outline
 
-This project aims to build an auction marketplace used to make cryptocurrency bids on a minted NFT.  Through the use of smart contracts, an image of a movie poster will be minted into an NFT, deployable on the Ethereum Virtual Machine.  This movie poster NFT will then be used as an asset, and bids fascilitated using Eth. Finally, using the streamlit interface, a Front-End web application will behave as the User Interface for auction. 
+We built an auction app used to make bids in Eth. Through the use of smart contracts, an image of a movie poster will be minted into an NFT. Finally, a frontend web application built in Streamlit is used to make bids in a more user-friendly way.
 
 ## NFT
-- Programming language: Solidity
-- contract for an ArtToken, operating on the ERC721 chain. This ensures that the token being minted is unique.
-- Finally, minting the tokenID and finalizing the NFT. 
+The NFT contract creates a non-fungible token that complies with ERC721 standards. An NFT ensures means that the token is unique and has no inherent value, but rather the value is determined by the market.
  
-### Certificate
-- The Certificate smart contract behaves as a digital receipt. 
-- Imported OpenZepplin contract code. 
-- The ABI signature is saved in a json file. This encodes the certificate of the NFT.
+## Certificate
+The certificate smart contract creates a digital receipt and is supported by imported OpenZepplin contract code.
 
 ## Auction
-- 
+The auction contract enables bids to be made in Eth that are held by the contract. A wallet can only bid once in a given auction; there is a finite amount of time available for the auction; bids can only be made if they exceed the highest bid, and the highest bid wins when the time expires.
+
+## Exchange
+The exchange contract enables Eth to be sent to the contract. Eth can then be withdrawn from that contract, effectively enabling Eth to be sent from one wallet to another.
 
 ## Project Files
+1. auctiondapp folder - contains auction frontend and supporting materials
+1. contracts - contains all smart contracts used in the project
+1. images - contains _Punch 9_ movie poster
