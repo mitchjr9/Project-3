@@ -29,7 +29,7 @@ The exchange contract enables Eth to be sent to the contract. Eth can then be wi
 ## Project Files
 1. Auctiondapp folder - contains auction frontend and supporting materials including contracts, .env file, .json file
 1. Exchangedapp folder – contains exchange smart contract (and incomplete frontend)
-1. Contracts folder- contains smart contracts used in the project
+1. Contracts folder- contains other smart contracts used in the project
 1. Images folder - contains _Punch 9_ movie poster
 1. Wallet folder - contains wallet functionality
-1. PROPOSAL.md - contains proposal and schedule for project
+1. PROPOSAL.md - proposal and schedule for project
