@@ -1,3 +1,4 @@
+#Imports
 import os
 import json
 from web3 import Web3
@@ -5,6 +6,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import streamlit as st
 
+#Load .env file
 load_dotenv()
 
 # Define and connect a new Web3 provider
@@ -40,30 +42,37 @@ def load_contract():
 # Load the contract
 contract = load_contract()
 
-
 ################################################################################
-# Make Bid
+# Bid Functionality
 ################################################################################
 
+#load wallets/accounts
 accounts = w3.eth.accounts
 account = accounts[0]
+
+#enable account selection
 wallet_account = st.selectbox("Select Account", options=accounts)
-make_bid = st.number_input("Make a Bid", value=1, step=1)
-if st.button("Make Bid"):
-    contract.functions.bid().transact({'from': wallet_account, 'gas': 3000000})
+
+#make bid
+make_bid = st.number_input("Make a Bid")
+try:
+    if st.button("Make Bid"):
+        contract.functions.bid(int(make_bid), wallet_account).transact({'from': wallet_account, 'gas': 3000000})
+except ValueError:
+        st.error(f"The bid is not high enough!")
 
 ################################################################################
-# Display Info
+# Display Auction Info
 ################################################################################
 if st.button("Display Auction Info"):
-    # Get the certificate owner
+    # Get time remaining in auction
     end_time = contract.functions.auctionEndTime().call()
     st.write(f"The auction ends in {end_time}")
 
-    # Get the certificate's metadata
+    # Get current highest bid
     high_bid = contract.functions.highestbid().call()
     st.write(f"The highest bid is {high_bid}")
     
-    # Highest bidder
+    # Get current highest bidder
     high_bidder = contract.functions.highestBidder().call()
     st.write(f"The highest bidder is {high_bidder}")

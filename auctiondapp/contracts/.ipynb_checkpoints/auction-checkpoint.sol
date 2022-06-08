@@ -19,20 +19,21 @@ contract Auction{
         beneficiary = _beneficiary;
         auctionEndTime = block.timestamp + _biddingTime; 
     }
-    function bid() public payable {
-        require(block.timestamp < auctionEndTime,'The Auction Time Is Over');
-        if(msg.value > highestbid) {
+    function bid(uint current_bid, address wallet_address) public payable {
+        require(block.timestamp < auctionEndTime,"The auction is over");
+        require(wallet_address != highestBidder,"You are already the highest bidder");
+        if(current_bid > highestbid) {
             
-            if(pendingReturns[msg.sender]>0)
+            if(pendingReturns[wallet_address]>0)
             {
-                uint amount = pendingReturns[msg.sender];
-                payable(msg.sender).transfer(amount);
+                uint amount = pendingReturns[wallet_address];
+                payable(wallet_address).transfer(amount);
             }
 
-            pendingReturns[msg.sender] = msg.value; 
-            highestBidder = msg.sender;
-            highestbid = msg.value;
-            emit highestBidIncreased(msg.sender, msg.value);
+            pendingReturns[wallet_address] = current_bid; 
+            highestBidder = wallet_address;
+            highestbid = current_bid;
+            emit highestBidIncreased(wallet_address, current_bid);
         }
         else {
             revert('sorry, the bid is not high enough!');
@@ -51,8 +52,8 @@ contract Auction{
         return true;
     }
     function auctionEnd() public {
-        require(block.timestamp > auctionEndTime,'The Auction Cannot End Before The Specified Time');
-        if(ended) revert('the auction is already over!');
+        require(block.timestamp > auctionEndTime,"The Auction Cannot End Before The Specified Time");
+        if(ended) revert("the auction is already over!");
         ended = true;
         emit auctionEnded(highestBidder, highestbid);
         beneficiary.transfer(highestbid);
