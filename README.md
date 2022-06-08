@@ -8,6 +8,9 @@ Abib Ajibola, Alex Mowlem, and Mitch Rose
 
 We built an auction app used to make bids in Eth. Through the use of smart contracts, an image of a movie poster will be minted into an NFT. Finally, a frontend web application built in Streamlit is used to make bids in a more user-friendly way.
 
+## Project Examples/Real-World Applications
+Auctions are important for digital assets, especially when those assets are used as a unique store of value. For example, popular NFT marketplaces such as OpenSea and Solana have auction functionality, and Magic Eden frequently hosts auctions on its homepage. However, these auctions can also be improved – for example, the NBA was auctioning NFTs for the playoffs, and hackers found a hole in the smart contracts used for the auction and stole nearly $70,000. As a result, it's clear these solutions are still being improved. 
+
 ## NFT
 The NFT contract creates a non-fungible token that complies with ERC721 standards. An NFT ensures means that the token is unique and has no inherent value, but rather the value is determined by the market.
  
